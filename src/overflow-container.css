@@ -1,0 +1,87 @@
+/**
+ * react-scroll-indicators – default styles for OverflowContainer
+ * Loaded automatically when you import OverflowContainer from "react-scroll-indicators".
+ * Optional: import "react-scroll-indicators/styles" if you only need the styles.
+ */
+
+.overflow-container {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.overflow-container__inner {
+  display: flex;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+}
+
+/* Hide scrollbars while keeping scroll (WebKit) */
+.overflow-container__inner--hide-scrollbar-x::-webkit-scrollbar:horizontal {
+  display: none;
+  height: 0;
+}
+
+.overflow-container__inner--hide-scrollbar-y::-webkit-scrollbar:vertical {
+  display: none;
+  width: 0;
+}
+
+/* Hide scrollbars (Firefox; applies to both axes when either class is used) */
+.overflow-container__inner--hide-scrollbar-x,
+.overflow-container__inner--hide-scrollbar-y {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.overflow-container__indicators {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: transparent;
+  pointer-events: none;
+}
+
+.overflow-container__indicator {
+  position: absolute;
+  z-index: 50;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.overflow-container__indicator--left {
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 100%;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.overflow-container__indicator--right {
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.overflow-container__indicator--up {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.overflow-container__indicator--down {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+}

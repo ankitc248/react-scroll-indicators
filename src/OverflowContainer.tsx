@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import "./overflow-container.css";
 import {
   type ForwardedRef,
   forwardRef,
@@ -65,14 +66,29 @@ export interface OverflowContainerProps
    */
   verticalScrollIndicators?: boolean;
 
-  /** Custom className for scroll indicators (overrides default styles) */
-  indicatorClassName?: string;
+  /** Custom className for horizontal scroll indicators (left/right) */
+  horizontalIndicatorClassName?: string;
+
+  /** Custom className for vertical scroll indicators (up/down) */
+  verticalIndicatorClassName?: string;
 
   /**
    * Whether to scroll when hovering over indicators.
    * @default true
    */
   scrollOnHover?: boolean;
+
+  /**
+   * Whether to hide the horizontal scrollbar (scroll still works).
+   * @default false
+   */
+  hideHorizontalScrollbar?: boolean;
+
+  /**
+   * Whether to hide the vertical scrollbar (scroll still works).
+   * @default false
+   */
+  hideVerticalScrollbar?: boolean;
 }
 
 const OverflowContainer = forwardRef(
@@ -87,8 +103,11 @@ const OverflowContainer = forwardRef(
       showScrollIndicators = true,
       horizontalScrollIndicators = true,
       verticalScrollIndicators = false,
-      indicatorClassName,
+      horizontalIndicatorClassName,
+      verticalIndicatorClassName,
       scrollOnHover = true,
+      hideHorizontalScrollbar = false,
+      hideVerticalScrollbar = false,
       ...props
     }: OverflowContainerProps,
     forwardedRef: ForwardedRef<HTMLDivElement>
@@ -211,16 +230,16 @@ const OverflowContainer = forwardRef(
       <div
         role="region"
         aria-label="Scrollable content"
-        className={cn("flex relative overflow-hidden", className)}
+        className={cn("overflow-container", className)}
         {...props}
       >
         {showScrollIndicators && (
-          <div className="absolute left-0 top-0 flex w-full h-full z-50 bg-transparent pointer-events-none">
+          <div className="overflow-container__indicators">
             {canScrollLeft && horizontalScrollIndicators && (
               <div
                 className={cn(
-                  "absolute h-full w-4 left-0 top-0 bg-gradient-to-l from-black/0 to-black/10 cursor-pointer z-50 pointer-events-auto",
-                  indicatorClassName
+                  "overflow-container__indicator overflow-container__indicator--left",
+                  horizontalIndicatorClassName
                 )}
                 onMouseEnter={() => scrollOnHover && startScroll("left")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
@@ -229,8 +248,8 @@ const OverflowContainer = forwardRef(
             {canScrollRight && horizontalScrollIndicators && (
               <div
                 className={cn(
-                  "absolute h-full w-4 right-0 top-0 bg-gradient-to-r from-black/0 to-black/10 cursor-pointer z-50 pointer-events-auto",
-                  indicatorClassName
+                  "overflow-container__indicator overflow-container__indicator--right",
+                  horizontalIndicatorClassName
                 )}
                 onMouseEnter={() => scrollOnHover && startScroll("right")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
@@ -239,8 +258,8 @@ const OverflowContainer = forwardRef(
             {canScrollUp && verticalScrollIndicators && (
               <div
                 className={cn(
-                  "absolute w-full h-5 left-0 top-0 bg-gradient-to-t from-black/0 to-black/10 cursor-pointer z-50 pointer-events-auto",
-                  indicatorClassName
+                  "overflow-container__indicator overflow-container__indicator--up",
+                  verticalIndicatorClassName
                 )}
                 onMouseEnter={() => scrollOnHover && startScroll("up")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
@@ -249,8 +268,8 @@ const OverflowContainer = forwardRef(
             {canScrollDown && verticalScrollIndicators && (
               <div
                 className={cn(
-                  "absolute w-full h-5 left-0 bottom-0 bg-gradient-to-b from-black/0 to-black/10 cursor-pointer z-50 pointer-events-auto",
-                  indicatorClassName
+                  "overflow-container__indicator overflow-container__indicator--down",
+                  verticalIndicatorClassName
                 )}
                 onMouseEnter={() => scrollOnHover && startScroll("down")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
@@ -260,7 +279,9 @@ const OverflowContainer = forwardRef(
         )}
         <div
           className={cn(
-            "flex relative overflow-auto w-full",
+            "overflow-container__inner",
+            hideHorizontalScrollbar && "overflow-container__inner--hide-scrollbar-x",
+            hideVerticalScrollbar && "overflow-container__inner--hide-scrollbar-y",
             containerClassName
           )}
           ref={containerRef}

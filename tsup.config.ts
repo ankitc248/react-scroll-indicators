@@ -6,6 +6,7 @@ export default defineConfig({
   dts: true,
   splitting: false,
   sourcemap: true,
+  minify: true,
   clean: true,
   external: ["react", "react-dom"],
   esbuildOptions(options) {

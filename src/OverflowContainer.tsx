@@ -13,8 +13,6 @@ import {
   useState,
 } from "react";
 
-declare const process: { env?: { NODE_ENV?: string } };
-
 function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(" ");
 }
@@ -120,7 +118,6 @@ const OverflowContainer = forwardRef(
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
-      if (process.env?.NODE_ENV === "development") {
         if (scrollSpeed < 0) {
           console.warn(
             "OverflowContainer: scrollSpeed should be a positive number"
@@ -136,7 +133,6 @@ const OverflowContainer = forwardRef(
             "OverflowContainer: scrollEndPadding should be a positive number"
           );
         }
-      }
     }, [scrollSpeed, scrollDistance, scrollEndPadding]);
 
     const startScroll = (scrollDirection: "left" | "right" | "up" | "down") => {

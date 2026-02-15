@@ -1,7 +1,6 @@
 /**
  * react-scroll-indicators – default styles for OverflowContainer
- * Loaded automatically when you import OverflowContainer.
- * Optional: import "react-scroll-indicators/styles" if you only need the styles.
+ * Import once in your app: import "react-scroll-indicators/styles";
  */
 
 .overflow-container {

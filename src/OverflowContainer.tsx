@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-import "./overflow-container.css";
 import {
   type ForwardedRef,
   forwardRef,

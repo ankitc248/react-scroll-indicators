@@ -17,18 +17,25 @@ yarn add react-scroll-indicators
 - `react` (>=17)
 - `react-dom` (>=17)
 
-No Tailwind or other CSS framework is required. The component uses plain CSS with BEM-style class names (e.g. `overflow-container`, `overflow-container__inner`, `overflow-container__indicator--left`). Default styles are loaded with the component; you can override with your own CSS via `className` / `containerClassName` / `horizontalIndicatorClassName` / `verticalIndicatorClassName`.
+No Tailwind or other CSS framework is required. The component uses plain CSS with BEM-style class names (e.g. `overflow-container`, `overflow-container__inner`, `overflow-container__indicator--left`). Import the default styles once in your app, or override with your own CSS via `className` / `containerClassName` / `horizontalIndicatorClassName` / `verticalIndicatorClassName`.
 
 ## Usage
 
-### Import and use (one import)
+### 1. Import the default styles (once)
+
+```tsx
+import "react-scroll-indicators/styles";
+```
+
+### 2. Use the component
 
 ```tsx
 import { OverflowContainer } from "react-scroll-indicators";
+import "react-scroll-indicators/styles";
 
 function MyComponent() {
   return (
-    <OverflowContainer className="max-w-md h-48" style={{ maxWidth: "28rem", height: "12rem" }}>
+    <OverflowContainer style={{ maxWidth: "28rem", height: "12rem" }}>
       <div style={{ display: "flex", gap: "1rem" }}>
         {items.map((item) => (
           <Card key={item.id} {...item} />
@@ -45,7 +52,6 @@ function MyComponent() {
 <OverflowContainer
   verticalScrollIndicators
   horizontalScrollIndicators={false}
-  className="my-container"
   style={{ height: "16rem", width: "16rem" }}
 >
   <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>{/* tall content */}</div>

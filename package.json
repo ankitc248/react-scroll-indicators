@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-indicators",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React overflow container with hover-activated scroll indicators",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -25,12 +25,14 @@
   "files": [
     "dist",
     "README.md",
+    "LICENSE",
     "src"
   ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "example": "npm run dev --prefix example"
+    "example": "npm run dev --prefix example",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
@@ -55,5 +57,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ankitc248/react-scroll-indicators.git"
+  },
+  "homepage": "https://ankitc248.github.io/react-scroll-indicators-examples/",
+  "bugs": {
+    "url": "https://github.com/ankitc248/react-scroll-indicators/issues"
   }
 }

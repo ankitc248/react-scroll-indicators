@@ -234,13 +234,14 @@ const OverflowContainer = forwardRef(
         {...props}
       >
         {showScrollIndicators && (
-          <div className="overflow-container__indicators">
+          <div className="overflow-container__indicators" aria-hidden="true">
             {canScrollLeft && horizontalScrollIndicators && (
               <div
                 className={cn(
                   "overflow-container__indicator overflow-container__indicator--left",
                   horizontalIndicatorClassName
                 )}
+                aria-hidden="true"
                 onMouseEnter={() => scrollOnHover && startScroll("left")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
               />
@@ -251,6 +252,7 @@ const OverflowContainer = forwardRef(
                   "overflow-container__indicator overflow-container__indicator--right",
                   horizontalIndicatorClassName
                 )}
+                aria-hidden="true"
                 onMouseEnter={() => scrollOnHover && startScroll("right")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
               />
@@ -261,6 +263,7 @@ const OverflowContainer = forwardRef(
                   "overflow-container__indicator overflow-container__indicator--up",
                   verticalIndicatorClassName
                 )}
+                aria-hidden="true"
                 onMouseEnter={() => scrollOnHover && startScroll("up")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
               />
@@ -271,6 +274,7 @@ const OverflowContainer = forwardRef(
                   "overflow-container__indicator overflow-container__indicator--down",
                   verticalIndicatorClassName
                 )}
+                aria-hidden="true"
                 onMouseEnter={() => scrollOnHover && startScroll("down")}
                 onMouseLeave={() => scrollOnHover && stopScroll()}
               />

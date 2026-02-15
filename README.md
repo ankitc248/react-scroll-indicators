@@ -17,13 +17,11 @@ yarn add react-scroll-indicators
 - `react` (>=17)
 - `react-dom` (>=17)
 
-No Tailwind or other CSS framework is required. The component uses plain CSS with BEM-style class names (e.g. `overflow-container`, `overflow-container__inner`, `overflow-container__indicator--left`). Default styles are included when you import the component; you can override with your own CSS via `className` / `containerClassName` / `horizontalIndicatorClassName` / `verticalIndicatorClassName`.
+No Tailwind or other CSS framework is required. The component uses plain CSS with BEM-style class names (e.g. `overflow-container`, `overflow-container__inner`, `overflow-container__indicator--left`). Default styles are loaded with the component; you can override with your own CSS via `className` / `containerClassName` / `horizontalIndicatorClassName` / `verticalIndicatorClassName`.
 
 ## Usage
 
-### 1. Import and use the component
-
-Styles are loaded automatically with the component. One import is enough:
+### Import and use (one import)
 
 ```tsx
 import { OverflowContainer } from "react-scroll-indicators";
@@ -40,22 +38,6 @@ function MyComponent() {
   );
 }
 ```
-
-### As a copyable component (shadcn-style)
-
-You can use the component file directly so it lives in your codebase and you can edit it:
-
-**Option A – Import the source file** (your bundler compiles it):
-
-```tsx
-import OverflowContainer from "react-scroll-indicators/OverflowContainer";
-```
-
-**Option B – Copy the file into your project** (e.g. `components/ui/OverflowContainer.tsx`):
-
-1. Copy from: `node_modules/react-scroll-indicators/src/OverflowContainer.tsx`
-2. Paste into your project (e.g. `components/ui/OverflowContainer.tsx`).
-3. Import from that path. The component only depends on `react`; you can keep or replace the small `cn()` helper.
 
 ### With vertical scroll
 
@@ -86,8 +68,14 @@ import OverflowContainer from "react-scroll-indicators/OverflowContainer";
 | `horizontalIndicatorClassName` | `string` | — | Override horizontal (left/right) indicator styles |
 | `verticalIndicatorClassName` | `string` | — | Override vertical (up/down) indicator styles |
 | `scrollOnHover` | `boolean` | `true` | Scroll when hovering over indicators |
+| `hideHorizontalScrollbar` | `boolean` | `false` | Hide horizontal scrollbar (scroll still works) |
+| `hideVerticalScrollbar` | `boolean` | `false` | Hide vertical scrollbar (scroll still works) |
 
 All standard `div` HTML attributes are also supported (e.g. `style`, `aria-*`).
+
+### Accessibility
+
+The scroll area has `role="region"` and `aria-label="Scrollable content"`. The gradient indicators are decorative and hidden from assistive tech. The inner content is focusable and can be scrolled with keyboard (arrow keys, Page Up/Down) when focused.
 
 ### Class names (for custom CSS)
 
@@ -112,6 +100,10 @@ npm run build
 ```
 
 Output is in `dist/` (ESM + CJS + types).
+
+## Browser support
+
+Works in modern browsers that support **ResizeObserver** (all current Chrome, Firefox, Safari, Edge). In frameworks like **Next.js**, use the component in a client boundary (e.g. `"use client"`); the built package already includes this.
 
 ## License
 

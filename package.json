@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-indicators",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React overflow container with hover-activated scroll indicators",
   "type": "module",
   "main": "./dist/index.cjs",
